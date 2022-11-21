@@ -1,5 +1,6 @@
 package me.dwidar.etmana_jet_compose.onBoardingPages.view
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -21,11 +22,13 @@ class OnBoardActivity : ComponentActivity()
 {
     private lateinit var onBoardingViewModel: OnBoardingViewModel
     private var onBoardingEnum = mutableStateOf(OnBoardingEnum.Page1)
+    private lateinit var myContext : Context
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
 
+        myContext = this
         onBoardingViewModel = ViewModelProvider(this)[OnBoardingViewModel::class.java]
 
         onBoardingViewModel.getOnBoardingPage().observe(this){
@@ -45,7 +48,7 @@ class OnBoardActivity : ComponentActivity()
                 {
                     OnBoardingEnum.Page1 -> page1(onChangePage = {goToPage(OnBoardingEnum.Page2)})
                     OnBoardingEnum.Page2 -> page2(onChangePage = {goToPage(OnBoardingEnum.Page3)})
-                    OnBoardingEnum.Page3 -> page3()
+                    OnBoardingEnum.Page3 -> page3(context = myContext)
                 }
             }
         }

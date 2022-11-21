@@ -1,5 +1,7 @@
 package me.dwidar.etmana_jet_compose.onBoardingPages.view
 
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -17,11 +19,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
+import me.dwidar.etmana_jet_compose.LoginScreen.view.LoginActivity
 import me.dwidar.etmana_jet_compose.R
 
-
 @Composable
-fun page3()
+fun page3(context: Context)
 {
     Column (horizontalAlignment = Alignment.CenterHorizontally){
 
@@ -39,7 +41,9 @@ fun page3()
 
             Button(
                 modifier = Modifier.fillMaxWidth(0.46f).fillMaxHeight(0.6f),
-                onClick = { },
+                onClick = {
+                          context.startActivity(Intent(context, LoginActivity::class.java))
+                },
                 shape = RoundedCornerShape(
                     topStart = 24.dp,
                     bottomStart = 24.dp
